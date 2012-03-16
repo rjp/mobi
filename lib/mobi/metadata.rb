@@ -7,6 +7,7 @@ module Mobi
                      111 => :type, 112 => :source, 113 => :asin, 114 => :version}
     attr_reader *EXTH_RECORDS.values
     attr_reader :title
+    attr_reader :bytes
 
     attr_accessor :stream, :data, :mobi, :exth
     attr_reader :exth_records
@@ -62,6 +63,8 @@ module Mobi
       
         start += length
       end
+
+      @bytes = (@mobi[4][0]<<24) + (@mobi[5][0]<<16) + (@mobi[6][0]<<8) + @mobi[7][0]
     end
 
   end
